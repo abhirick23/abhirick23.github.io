@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhiroop Sarkar — AI/ML Engineer</title>
+<meta name="description" content="AI/ML Engineer building production GenAI systems, RAG pipelines, and formally verified RL. Joint MSc, IIT Madras & University of Birmingham.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg: #0B0E11;
+  --bg-raised: #11151A;
+  --surface: #161B21;
+  --border: #232930;
+  --text: #E8E6E1;
+  --text-dim: #8C9199;
+  --sage: #7C9885;
+  --sage-dim: #5A7A65;
+  --gold: #C9A86A;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --maxw: 880px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--sage); text-decoration: none; }
+a:hover { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mono { font-family: var(--mono); }
+
+/* ---------- status strip ---------- */
+.status-strip {
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+.status-track {
+  display: inline-flex;
+  animation: scroll-left 32s linear infinite;
+}
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.status-item {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--sage);
+  padding: 0 28px;
+  white-space: nowrap;
+}
+.status-item .num { color: var(--gold); font-weight: 600; }
+.status-item .dot { color: var(--text-dim); margin-left: 28px; }
+
+/* ---------- header / hero ---------- */
+header.hero {
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+.eyebrow span { color: var(--sage); }
+h1 {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 42px);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.lede {
+  font-size: 17px;
+  color: var(--text-dim);
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+.lede strong { color: var(--text); font-weight: 600; }
+
+.contact-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 13.5px;
+}
+.contact-row a { border-bottom: 1px solid transparent; }
+.contact-row a:hover { border-bottom-color: var(--gold); }
+
+/* ---------- section structure ---------- */
+section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.section-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.section-sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ---------- experience entries ---------- */
+.entry { margin-bottom: 40px; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.entry-role { font-weight: 600; font-size: 17px; color: var(--text); }
+.entry-org { color: var(--sage); font-weight: 500; }
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.entry-body { color: var(--text-dim); font-size: 15px; margin: 12px 0 14px; }
+.entry-body p { margin-bottom: 8px; }
+.entry-body p:last-child { margin-bottom: 0; }
+
+.metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+.metric-chip {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+/* ---------- research ---------- */
+.research-entry { margin-bottom: 36px; }
+.research-entry:last-child { margin-bottom: 0; }
+.research-title { font-weight: 600; font-size: 16.5px; margin-bottom: 4px; }
+.research-meta { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin-bottom: 10px; }
+.research-meta .yr { color: var(--sage); }
+
+/* ---------- skills ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 14px 20px;
+}
+.skills-grid dt {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  padding-top: 2px;
+}
+.skills-grid dd {
+  font-size: 14.5px;
+  color: var(--text);
+}
+
+/* ---------- projects ---------- */
+.project { margin-bottom: 28px; }
+.project:last-child { margin-bottom: 0; }
+.project-title { font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+.project-desc { color: var(--text-dim); font-size: 14.5px; }
+
+/* ---------- education ---------- */
+.edu-entry { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.edu-entry:last-child { margin-bottom: 0; }
+.edu-name { font-weight: 600; font-size: 15.5px; }
+.edu-school { color: var(--sage); font-size: 14px; }
+.edu-meta { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); text-align: right; white-space: nowrap; }
+
+/* ---------- footer ---------- */
+footer { padding: 40px 0 64px; }
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.footer-links { display: flex; gap: 18px; }
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 4px 0; }
+  .skills-grid dt { padding-top: 12px; }
+  .entry-meta, .edu-meta { text-align: left; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="status-strip" aria-hidden="true">
+  <div class="status-track">
+    <span class="status-item"><span class="num">35%</span> latency reduction · Gist Impact<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">100%</span> formal synthesis success · dissertation<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">1.85x</span> training speedup · Curtin<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">92%</span> mAP document layout · Airbus<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">97.13%</span> classification accuracy · Axis Bank<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">40%</span> end-to-end latency cut · pgvector<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">35%</span> latency reduction · Gist Impact<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">100%</span> formal synthesis success · dissertation<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">1.85x</span> training speedup · Curtin<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">92%</span> mAP document layout · Airbus<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">97.13%</span> classification accuracy · Axis Bank<span class="dot">·</span></span>
+    <span class="status-item"><span class="num">40%</span> end-to-end latency cut · pgvector<span class="dot">·</span></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">AI/ML Engineer <span>·</span> Bengaluru</div>
+    <h1>Abhiroop Sarkar</h1>
+    <p class="lede">
+      I find the bottleneck and prove the fix. <strong>Joint MSc in Data Science &amp; AI</strong>
+      from IIT Madras and the University of Birmingham, where my dissertation used supermartingale
+      theory to put formal convergence guarantees on reinforcement learning reward functions.
+      Since then I've shipped production GenAI systems at Gist Impact and Airbus — the kind of work
+      where the interesting part is rarely the model, it's the queue depth, the index choice, the
+      quantization level.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:abhiroop.sarkar23@gmail.com">abhiroop.sarkar23@gmail.com</a>
+      <a href="https://github.com/abhirick23" target="_blank" rel="noopener">github.com/abhirick23</a>
+      <a href="https://www.linkedin.com/in/abhiroop-sarkar-a2bb2119b/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </header>
+
+  <section id="experience">
+    <div class="section-head">
+      <span class="section-title">Experience</span>
+      <span class="section-sub">2023 — present</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div><span class="entry-role">AI/ML Engineer</span> · <span class="entry-org">Gist Impact</span></div>
+        <div class="entry-meta">Aug 2025 — Present · Bengaluru</div>
+      </div>
+      <div class="entry-body">
+        <p>Architected a production multimodal GenAI system for CSRD sustainability reporting, processing 100K+ documents. Designed a token-aware rate limiter for Gemini 2.0 inference handling simultaneous RPM and TPM quota constraints, profiling throughput against concurrency to land on batch size and worker counts that maximized utilization without violating limits.</p>
+        <p>Built the distributed backbone on FastAPI, AWS SQS, and S3 — the real fight was queue sizing: undersized queues starved workers, oversized queues created memory pressure. Settled on 256-message queues after profiling depth against worker utilization. On the retrieval side, evaluated HNSW against IVF-Flat for pgvector semantic search; HNSW won on latency at 3x the memory cost, and query batching on top of it cut end-to-end latency further.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">35% latency reduction</span>
+        <span class="metric-chip">sub-100ms query latency</span>
+        <span class="metric-chip">40% latency cut via batching</span>
+        <span class="metric-chip">256-msg queue tuning</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div><span class="entry-role">GenAI Research Intern</span> · <span class="entry-org">Airbus</span></div>
+        <div class="entry-meta">Feb 2025 — Jul 2025 · Bengaluru</div>
+      </div>
+      <div class="entry-body">
+        <p>Built a RAG system for aerospace contract analysis where hallucination was the failure mode that mattered. Profiled attention distributions across retrieved contexts and found boilerplate sections dominating model focus despite low semantic relevance — fixed it with information-density-based context filtering.</p>
+        <p>Ran retrieval ranking experiments with negative sampling and contrastive learning, comparing dense bi-encoders against sparse BM25 for legal terminology. Separately, evaluated INT8/INT4 quantization with LoRA adapters to fit fine-tuning inside GPU memory limits, and fine-tuned YOLOv11n for document layout detection, integrating it with Docling for structured extraction from multi-column contracts.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">92% mAP layout detection</span>
+        <span class="metric-chip">TechXceed Top 5 / 115 papers</span>
+        <span class="metric-chip">INT4/INT8 + LoRA tuning</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div><span class="entry-role">Data Science Intern</span> · <span class="entry-org">Axis Bank</span></div>
+        <div class="entry-meta">Jan 2023 — Jun 2023 · Mumbai</div>
+      </div>
+      <div class="entry-body">
+        <p>Fine-tuned FinBERT on 142K banking documents for complaint severity classification, pushing accuracy from 94.42% to 97.13% through domain-specific adaptation. Ablation studies showed that adaptation mostly reshaped middle-layer attention while early layers kept their general language understanding intact — a useful data point on where fine-tuning actually does its work.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">94.42% → 97.13% accuracy</span>
+        <span class="metric-chip">142K document corpus</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div><span class="entry-role">Machine Learning Intern</span> · <span class="entry-org">Panoculon Lab, IIT Madras Research Park</span></div>
+        <div class="entry-meta">Aug 2023 — Oct 2023 · Chennai</div>
+      </div>
+      <div class="entry-body">
+        <p>Built a CV-powered Flutter app for visually impaired navigation — text recognition and face detection running on-device. Deployed with TensorFlow Lite for real-time mobile inference.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">95% detection accuracy</span>
+        <span class="metric-chip">sub-200ms mobile inference</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="section-head">
+      <span class="section-title">Research</span>
+      <span class="section-sub">2021 — 2025</span>
+    </div>
+
+    <div class="research-entry">
+      <div class="research-title">Formal Verification in Reinforcement Learning</div>
+      <div class="research-meta"><span class="yr">2024–2025</span> · Master's Dissertation, University of Birmingham · Supervisor: Dr. Mirco Giacobbe</div>
+      <div class="entry-body">
+        <p>Asked whether RL reward functions can carry formal convergence guarantees, not just empirical ones. Built a synthesis methodology using polynomial ranking supermartingales — quadratic Lyapunov-like templates solved via semidefinite programming, with Positivstellensatz-inspired constraints applied to stochastic systems. Implemented the pipeline in CVXPY with the SCS solver.</p>
+        <p>The synthesized reward functions matched the practical performance of heuristic ones (7.1 vs 7.1 steps to goal) while actually proving convergence — closing a gap where most reward engineering ships without any formal guarantee at all.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">100% synthesis success</span>
+        <span class="metric-chip">sub-second computation</span>
+      </div>
+    </div>
+
+    <div class="research-entry">
+      <div class="research-title">Anomaly Detection in Manufacturing Using Transformers</div>
+      <div class="research-meta"><span class="yr">2023–2024</span> · IIT Madras RBCDSAI · Supervisor: Prof. Raghunathan Rengaswamy</div>
+      <div class="entry-body">
+        <p>Built an unsupervised anomaly detector for manufacturing assembly sequences using BERT embeddings, catching failures like repeated stations, incorrect ordering, and skipped critical steps — cases where the same operation means something different depending on context. Beat the best classical baseline (Random Forest) by 11 points and statistical methods by 23. Compressed to DistilBERT afterward to hit sub-100ms edge inference for real-time line deployment.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">83% detection accuracy</span>
+        <span class="metric-chip">+11% over Random Forest</span>
+      </div>
+    </div>
+
+    <div class="research-entry">
+      <div class="research-title">Distributed ML Systems</div>
+      <div class="research-meta"><span class="yr">2021–2022</span> · Curtin University, Malaysia · Supervisor: Dr. Filbert Juwono</div>
+      <div class="entry-body">
+        <p>Optimized distributed CNN training across dual NVIDIA Tesla K80 GPUs through gradient bucketing and overlapped communication. Profiling GPU utilization and inter-GPU bandwidth pointed to PCIe as the actual bottleneck, not compute — fixed it with gradient accumulation and FP16 mixed precision. Published at IEEE GECOST 2022.</p>
+      </div>
+      <div class="metrics">
+        <span class="metric-chip">1.85x speedup</span>
+        <span class="metric-chip">IEEE GECOST 2022</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="section-title">Projects</span>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Smart Research Retriever (RAG)</div>
+      <div class="project-desc">Academic paper retrieval system over ChromaDB with cosine-similarity semantic search. Added MoE-inspired specialized retrievers per document type (papers, surveys, tutorials) for a 25% retrieval accuracy gain, plus a cross-encoder re-ranking stage that cut irrelevant results by 30%.</div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">ML Model Management with ZenML &amp; MLflow</div>
+      <div class="project-desc">End-to-end pipeline for orchestration, experiment tracking, and model versioning, with CI/CD deployment via GitHub Actions. Added a model registry and A/B testing framework to systematically compare 10+ model variants with automated rollback on regression.</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-title">Stack</span>
+    </div>
+    <dl class="skills-grid">
+      <dt>Languages</dt><dd>Python, SQL</dd>
+      <dt>ML / DL</dt><dd>PyTorch, TensorFlow, Hugging Face Transformers, LangChain</dd>
+      <dt>GenAI / LLMs</dt><dd>RAG systems, fine-tuning (LoRA, QLoRA), prompt engineering, INT4/INT8 quantization</dd>
+      <dt>ML Systems</dt><dd>Distributed training (PyTorch DDP, NCCL), GPU optimization, model compression</dd>
+      <dt>Cloud / MLOps</dt><dd>AWS (SageMaker, S3, SQS, Lambda), GCP, Docker, MLflow, ZenML, Weights &amp; Biases</dd>
+      <dt>Databases</dt><dd>PostgreSQL, MongoDB, pgvector, ChromaDB, HNSW / IVF-Flat indexing</dd>
+      <dt>Formal Methods</dt><dd>Semidefinite programming (CVXPY, SCS), Lyapunov theory, formal verification</dd>
+      <dt>Computer Vision</dt><dd>YOLOv11, OpenCV, document layout detection, OCR</dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <span class="section-title">Education</span>
+    </div>
+
+    <div class="edu-entry">
+      <div>
+        <div class="edu-name">Joint MSc, Data Science &amp; Artificial Intelligence</div>
+        <div class="edu-school">University of Birmingham &amp; IIT Madras</div>
+      </div>
+      <div class="edu-meta">2023 — 2025</div>
+    </div>
+
+    <div class="edu-entry">
+      <div>
+        <div class="edu-name">B.Tech, Artificial Intelligence</div>
+        <div class="edu-school">G H Raisoni College of Engineering, Nagpur · CGPA 8.60/10</div>
+      </div>
+      <div class="edu-meta">2019 — 2023</div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="section-head">
+      <span class="section-title">Publications</span>
+    </div>
+    <div class="entry-body">
+      <p>"A Computational Approach for Predicting the Termination of COVID-19" — IEEE GECOST 2022 International Conference</p>
+      <p>"Natural Language Based Corpus Model on a Wide Range of Medical Corpus" — Journal Publication</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-row">
+      <span>Built &amp; maintained by Abhiroop Sarkar</span>
+      <div class="footer-links">
+        <a href="mailto:abhiroop.sarkar23@gmail.com">email</a>
+        <a href="https://github.com/abhirick23" target="_blank" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/abhiroop-sarkar-a2bb2119b/" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
